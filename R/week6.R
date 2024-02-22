@@ -6,23 +6,19 @@ library(rebus)
 # line reserved for library call
 
 # Data Import
-citations <- stri_read_lines("../data/citations.txt", encoding = '297')
-citations_txt <- stri_trim_both(citations, pattern = "[:WHITE_SPACE:]")
-# stri_trim_both(citations, pattern = "[:space:]") <-- this works.?
-# stri_trim_both(citations, pattern = "^[:space:]*$")
-# citations[stri_trim_both(citations) != ""] 
-# stri_trim_both(citations, pattern != "", negate = TRUE) 
-# stri_trim(citations, side = "both")
-sum(str_count(citations) - str_count(citations_txt))
-#sum(str_length(citations)-str_length(citations_txt))
+citations <- stri_read_lines("../data/citations.txt", encoding = "CP1252")
+citations_txt <- citations[stri_trim_both(citations) != ""] 
+sum(str_count(citations) - str_count(citations_txt)) 
+sum(length(citations)-length(citations_txt))
 mean(nchar(citations_txt))
   
-# Data Cleaning
+# Data Cleaning <--line 14
 citations_tbl %>%
   sample_n(20)
-#next row should be on line 17
 citations_tbl <- 
-  
+
   
 # practice area
 writeLines(citations)
+writeLines(citations_txt)
+str_view(citations, pattern = START %R% "C")
