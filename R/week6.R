@@ -16,10 +16,13 @@ citations_tbl %>%
   sample_n(20)
 citations_tbl <- tibble(line = seq_along(citations_txt), cite = citations_txt) %>%
   # str_replace_all(coll("\"'"), "")    # str_replace_all("[\"']", "")
-  mutate(year = (str_match(string = citations_tbl$cite, pattern = "(([1-2][0-9]{3}))")[,1])) %>% 
-  mutate(citations_tbl, page_start = (str_match(string = citations_tbl$cite, pattern = "\\b(\\d+)(?=-)")[,1])) 
+  mutate(year = (str_match(string = cite, pattern = "(([1-2][0-9]{3}))")[,1])) %>%
+  mutate(page_start = (str_match(string = cite, pattern = "\\b(\\d+)(?=-)")[,1])) %>%
+  mutate(perf_ref = str_detect(string = cite, pattern = "performance")) # need to ensure this is capturing capitalization as well
 
-mutate(perf_ref = )
+
+
+# line 21 option: str_detect(cite, regex("performance", ignore_case = TRUE))
 
 
 # practice area
