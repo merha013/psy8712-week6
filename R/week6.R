@@ -2,8 +2,8 @@
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 library(tidyverse)
 library(stringi)
-library(rebus)
-library(dplyr)
+
+
 
 # Data Import
 citations <- stri_read_lines("../data/citations.txt", encoding = "CP1252")
