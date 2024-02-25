@@ -18,8 +18,8 @@ citations_tbl <- tibble(line = seq_along(citations_txt), cite = citations_txt) %
   mutate(cite = str_replace_all(cite, "[\"\']","")) %>%
   mutate(year = (str_match(cite, "(([1-2][0-9]{3}))")[,1])) %>%
   mutate(page_start = (str_match(cite, "\\b(\\d+)(?=-)")[,1])) %>%
-  mutate(perf_ref = str_detect(cite, "performance")) %>%  # when I use regex and/or ignore_case = TRUE it no longer matches any form of the word performance
-  mutate(title = (str_match(string = cite, pattern = "\\). (.+?)[.!?]")[,2])) %>%
-  mutate(first_author = (str_match(string = cite, pattern ="(([A-Z][a-z]+,\\s[A-Z]\\.)(\\s[A-Z]\\.)?)")[,1]))
+  mutate(perf_ref = str_detect(cite, "performance")) %>%  # when I use regex and ignore_case = TRUE it no longer matches any form of the word performance
+  mutate(title = (str_match(cite, "\\). (.+?)[.!?]")[,2])) %>%
+  mutate(first_author = (str_match(cite, "(([A-Z][a-z]+,\\s[A-Z]\\.)(\\s[A-Z]\\.)?)")[,1]))
 
 sum(!is.na(citations_tbl$first_author))
